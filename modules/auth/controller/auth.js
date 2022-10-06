@@ -46,7 +46,7 @@ export const confirmEmail = async (req, res) => {
   result.modifiedCount
     ? res.json({ message: "Done" })
     : res.json({ message: "wrong request" });
-};
+}
 
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
@@ -75,20 +75,25 @@ export const signIn = async (req, res) => {
   }
 };
 export const signout = async (req, res) => {
-  try {
-    const result = await UserModel.findByIdAndUpdate(
-      { _id: req.user._id },
-      { isOnline: false , lastSeen:new Date}
-    );
-    if (result) {
-      res.json({ message: "Done" });
-    } else {
-      res.json({ message: "In-valid User Account" });
-    }
-  } catch (error) {
-    res.json({ message: "catch error", error });
-  }
+
+try {
+	    const result = await UserModel.findByIdAndUpdate(
+	      { _id: req.user._id },
+	      { isOnline: false , lastSeen: new Date }
+	    );
+	    if (result) {
+	      res.json({ message: "Done" });
+	    } else {
+	      res.json({ message: "In-valid User Account" });
+	    }
+} catch (error) {
+  res.json({ message: "catch error" , error});
+	
 }
 
-export const refreshToken = async (req, res) => {};
+}
+
+export const refreshToken = async (req, res) => {
+  
+};
 
